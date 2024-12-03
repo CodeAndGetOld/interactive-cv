@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ReactDOM from 'react-dom';
 
 interface Project {
   title: string;
@@ -9,49 +10,131 @@ interface Project {
   link: string;
 }
 
+interface MobilePreviewProps {
+  url: string;
+  onClose: () => void;
+}
+
+const MobilePreview = ({ url, onClose }: MobilePreviewProps) => {
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="relative">
+        {/* iPhone frame */}
+        <div className="relative w-[420px] h-[860px] bg-gradient-to-br from-gray-950 via-gray-800 to-gray-600 rounded-[60px] p-4 shadow-2xl">
+          {/* Notch */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[160px] h-[34px] bg-gradient-to-b from-gray-950 to-gray-800 rounded-b-3xl" />
+          {/* Screen */}
+          <div className="w-full h-full bg-white rounded-[45px] overflow-hidden">
+            <iframe src={url} className="w-full h-full border-0" title="Mobile Preview" />
+          </div>
+        </div>
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const openInMobilePreview = (url: string) => {
+  // Create a container for the modal if it doesn't exist
+  let container = document.getElementById('mobile-preview-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'mobile-preview-container';
+    document.body.appendChild(container);
+  }
+
+  // Render the MobilePreview component
+  const root = ReactDOM.createRoot(container);
+  root.render(
+    <MobilePreview
+      url={url}
+      onClose={() => {
+        root.unmount();
+        container?.remove();
+      }}
+    />,
+  );
+};
+
 const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce platform built with React and Node.js",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=600&q=80",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    link: "https://github.com"
+    title: 'Digital Interactive Service Platform',
+    description: 'A full-stack digital interactive service platform built with React and Node.js',
+    image: '../src/assets/StartUpRo.png',
+    technologies: [
+      'React',
+      'Context API',
+      'Rest API',
+      'Typescript',
+      'Javascript',
+      'Node.js',
+      'Google Cloud Platform',
+      'Serverless',
+      'TailwindCSS',
+      'Stripe',
+      'Styled-Components',
+      'Socket.io',
+    ],
+    link: 'https://digital-menu.app/linea',
   },
   {
-    title: "AI Image Generator",
-    description: "An AI-powered image generation tool using OpenAI's API",
-    image: "https://images.unsplash.com/photo-1547954575-855750c57bd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=600&q=80",
-    technologies: ["React", "TypeScript", "OpenAI API", "TailwindCSS"],
-    link: "https://github.com"
+    title: 'Process Workbench',
+    description: 'Low-code graphical environment for process automation',
+    image:
+      'https://images.unsplash.com/photo-1547954575-855750c57bd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=600&q=80',
+    technologies: [
+      'React',
+      'Redux Toolkit',
+      'Context API',
+      'Rest API',
+      'TypeScript',
+      'Material UI',
+      'AG Grid',
+      'SASS',
+      'Jest',
+      'React Testing Library',
+    ],
+    link: 'https://www.aeratechnology.com/process-builder',
   },
   {
-    title: "Real-time Chat App",
-    description: "A real-time chat application with WebSocket integration",
-    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=600&q=80",
-    technologies: ["React", "Socket.io", "Express", "MongoDB"],
-    link: "https://github.com"
-  }
+    title: 'Control Room Dashboard',
+    description: 'Centralized Command for Enhanced Decision Intelligence',
+    image:
+      'https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=600&q=80',
+    technologies: [
+      'React',
+      'Context API',
+      'Rest API',
+      'TypeScript',
+      'Jest',
+      'React Testing Library',
+      'SASS',
+    ],
+    link: 'https://www.aeratechnology.com/aera-control-room',
+  },
 ];
 
 export function ProjectCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === projects.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentIndex((prevIndex) => (prevIndex === projects.length - 1 ? 0 : prevIndex + 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? projects.length - 1 : prevIndex - 1));
   };
 
   return (
     <div className="relative w-full h-[400px] overflow-hidden rounded-xl">
       {/* Carousel content */}
-      <div 
+      <div
         className="absolute w-full h-full transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
@@ -65,7 +148,7 @@ export function ProjectCarousel() {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover blur-sm brightness-75"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
                 <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
@@ -80,14 +163,27 @@ export function ProjectCarousel() {
                     </span>
                   ))}
                 </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-                >
-                  View Project →
-                </a>
+                {project.title.toLowerCase() === 'digital interactive service platform' ? (
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openInMobilePreview(project.link);
+                    }}
+                    href={project.link}
+                    className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                  >
+                    View Project →
+                  </a>
+                ) : (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                  >
+                    View Project →
+                  </a>
+                )}
               </div>
             </div>
           ))}

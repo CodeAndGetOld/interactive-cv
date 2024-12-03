@@ -33,31 +33,28 @@ const stats = [
 
 export function MainContent() {
   return (
-    <main className="p-8 space-y-12">
-      <section className="relative h-[300px] rounded-2xl overflow-hidden">
+    <main className="p-4 md:p-8 space-y-8 md:space-y-12">
+      <section className="relative rounded-2xl overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
           alt="Mountains"
-          className="w-full h-full object-cover"
+          className="absolute w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-card-dark/90 to-card-dark/70 flex items-center p-12">
-          <div>
-            <h1 className="text-4xl font-bold mb-4">
-              Discover my Amazing
-              <br />
-              Art Space!
+        <div className="relative bg-gradient-to-r from-card-dark/90 to-card-dark/70 p-4 md:p-12">
+          <div className="w-full">
+            <h1 className="text-xl md:text-4xl font-bold mb-4">
+              Software Developer
+              <br className="hidden md:block" /> with an Eye for Design
             </h1>
-            <div className="flex items-center space-x-2 text-primary">
-              {/* <Code className="w-5 h-5" /> */}
-              <code>
-                {/* <Code className="w-5 h-5" /> */}
-                I’m a React.js front-end developer and co-founder of a software development company,
+            <div className="flex items-start space-x-2 text-primary">
+              <code className="text-[11px] leading-relaxed md:text-base">
+                I'm a React.js front-end developer and co-founder of a software development company,
                 where I blend the creativity of my graphic design roots with the power of code to
                 craft engaging web platforms. I thrive on challenges that demand logical thinking
                 and problem-solving—and the occasional dose of caffeine.
-                <br />
-                <br />
-                When I’m not debugging or brainstorming, I’m probably thinking about my next big
+                <br className="hidden md:block" />
+                <br className="hidden md:block" />
+                When I'm not debugging or brainstorming, I'm probably thinking about my next big
                 project… or dogs. Definitely dogs.
               </code>
             </div>
@@ -68,23 +65,24 @@ export function MainContent() {
       <ProjectCarousel />
       <Experience />
 
-      <section className="grid grid-cols-4 gap-6">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {stats.map((stat, index) => (
-          <div key={index} className="card text-center">
-            <h3 className="text-3xl font-bold text-primary mb-2">{stat.value}</h3>
-            <p className="text-gray-400">{stat.label}</p>
+          <div key={index} className="card text-center p-4 md:p-6">
+            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">{stat.value}</h3>
+            <p className="text-gray-400 text-sm md:text-base">{stat.label}</p>
           </div>
         ))}
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-8">My Services</h2>
-        <div className="grid grid-cols-3 gap-6">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8">My Services</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => (
-            <div key={index} className="card">
-              <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-              <p className="text-gray-400 mb-6">{service.description}</p>
-              <button className="text-primary hover:underline">ORDER NOW →</button>
+            <div key={index} className="card p-4 md:p-6">
+              <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">{service.title}</h3>
+              <p className="text-gray-400 text-sm md:text-base mb-4 md:mb-6">
+                {service.description}
+              </p>
             </div>
           ))}
         </div>

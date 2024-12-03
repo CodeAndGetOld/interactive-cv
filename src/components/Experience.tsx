@@ -12,8 +12,9 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     company: 'Unitpay Systems',
-    position: 'Co-Founder & UI/UX Developer',
-    technologies: 'React.js, Material-UI, Context API, React Spring',
+    position: 'Co-Founder & Frontend Architect & UI/UX Designer',
+    technologies:
+      'React.js, Material-UI, Context API, React Spring, Node.js, Express.js, Tailwind CSS',
     period: '2020 - Present',
     description: [
       'Design UI/UX for an innovative web platform that focuses on the HoReCa industry',
@@ -25,7 +26,8 @@ const experiences: ExperienceItem[] = [
   {
     company: 'Aera Technology',
     position: 'Senior Software Engineer',
-    technologies: 'React.js, TypeScript, Redux, Material-UI, Jest',
+    technologies:
+      'React.js, TypeScript, Material-UI, Jest, Redux Toolkit, Context API, JEST, CSS3, SASS, Git, REST APIs, AG Grid, Fusion Charts',
     period: '2022 - Present',
     description: [
       'Develop new features and components in our existing web application',
@@ -40,7 +42,7 @@ const experiences: ExperienceItem[] = [
   {
     company: 'Smart-X Net Apps',
     position: 'Software Engineer',
-    technologies: 'React.js, JavaScript, CSS3, REST APIs',
+    technologies: 'React.js, JavaScript, CSS3, SASS, REST APIs, JQuery, Git, Java',
     period: '2021 - 2022',
     description: [
       'Developing new user-facing features using React.js',
@@ -66,34 +68,49 @@ const experiences: ExperienceItem[] = [
       'Collaborating with software developers and designers',
     ],
   },
+  {
+    company: 'NetBet',
+    position: 'UI/UX & Graphic Designer',
+    technologies: 'Photoshop, Illustrator, Blender 3D, Adobe XD, Cinema 4D',
+    period: '2019 - 2021',
+    description: [
+      'Design and maintain online media campaigns, websites, e-mail campaigns, social media and other materials as needed.',
+      'UI/UX for web platforms using Adobe XD',
+      'Collaborate with the marketing managers (CRM & Acquisition) to develop compelling design concepts, great artwork and layouts for multi-channel and integrated marketing projects.',
+      'Using creativity in Photoshop and Illustrator to produce complex compositions that target the actual and potential customers in the casino environment',
+      'Multi-tasking: the ability to work on multiple projects at the same time',
+    ],
+  },
 ];
 
 export function Experience() {
   return (
-    <section className="card mb-8">
-      <h2 className="text-xl font-bold mb-4">Experience</h2>
-      <div className="space-y-6">
+    <section className="card mb-4 md:mb-8">
+      <h2 className="text-xl font-bold mb-3 md:mb-4">Experience</h2>
+      <div className="space-y-4 md:space-y-6">
         {experiences.map((exp, index) => (
-          <div key={index} className="p-6 bg-card-dark rounded-lg">
-            <div className="flex justify-between items-start mb-4">
+          <div key={index} className="p-4 md:p-6 bg-card-dark rounded-lg">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
               <div>
-                <h3 className="text-lg font-semibold text-white">{exp.position}</h3>
-                <p className="text-sm text-gray-400 mt-1 mb-3">{exp.technologies}</p>
+                <h3 className="text-base md:text-lg font-semibold text-white">{exp.position}</h3>
+                <p className="text-xs md:text-sm text-primary mt-1 mb-2 md:mb-3">
+                  {exp.technologies}
+                </p>
                 <div className="flex items-center text-gray-400">
                   <Building2 className="w-4 h-4 mr-2" />
-                  <span>{exp.company}</span>
+                  <span className="text-sm md:text-base">{exp.company}</span>
                 </div>
               </div>
-              <div className="flex items-center text-gray-400">
+              <div className="flex items-center text-gray-400 mt-2 md:mt-0">
                 <Calendar className="w-4 h-4 mr-2" />
-                <span>{exp.period}</span>
+                <span className="text-sm md:text-base">{exp.period}</span>
               </div>
             </div>
             <ul className="space-y-2 text-gray-400">
               {exp.description.map((item, i) => (
                 <li key={i} className="flex items-start">
                   <span className="text-primary mr-2">•</span>
-                  <span>{item}</span>
+                  <span className="text-sm md:text-base">{item}</span>
                 </li>
               ))}
             </ul>

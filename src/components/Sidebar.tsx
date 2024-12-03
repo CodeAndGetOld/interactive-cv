@@ -11,22 +11,24 @@ const languages: LanguageSkill[] = [
   { name: 'French', level: 50 },
 ];
 
-const tools = ['Bootstrap, Materialize', 'Sass, Less, Tailwind', 'Gulp, Webpack', 'Git Knowledge'];
-
 export function Sidebar() {
   return (
-    <aside className="bg-card-dark p-8 flex flex-col items-center">
+    <aside className="bg-card-dark p-4 md:p-8 mb-4 md:mb-8 flex flex-col items-center">
       <img
         src="https://media.licdn.com/dms/image/v2/D4D03AQGiJv2QRGbeLA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1722893539330?e=1738195200&v=beta&t=qmNb7gTuDRWzsxKczAyf6W2XOkRGpg2eUYDaqwK0R4E"
         alt="Profile"
-        className="w-32 h-32 rounded-full mb-6 border-2 border-primary"
+        className="w-24 md:w-32 h-24 md:h-32 rounded-full mx-auto mb-4 md:mb-6 border-2 border-primary"
       />
-      <h1 className="text-2xl font-bold mb-1">Tudor Hotea</h1>
-      <h2 className="text-lg text-gray-400 mb-6">Senior UI Developer</h2>
+      <h1 className="text-xl md:text-2xl font-bold mb-1">Tudor Hotea</h1>
+      <div className="text-base md:text-lg text-gray-400 mb-4 md:mb-6 text-center">
+        <div>Senior Software Engineer</div>
+        <div>UI/UX Developer</div>
+        <div>Co-Founder</div>
+      </div>
 
-      <div className="w-full space-y-6">
+      <div className="w-full space-y-4 md:space-y-6">
         <div>
-          <p className="text-gray-400 mb-2">Residence:</p>
+          <p className="text-gray-400 mb-1 md:mb-2">Residence:</p>
           <div className="flex items-center">
             <MapPin className="w-4 h-4 mr-2 text-primary" />
             <span>Bucharest, RO</span>
@@ -34,10 +36,10 @@ export function Sidebar() {
         </div>
 
         <div>
-          <p className="text-gray-400 mb-4">Languages</p>
+          <p className="text-gray-400 mb-1 md:mb-2">Languages:</p>
           {languages.map((lang, index) => (
-            <div key={index} className="mb-4">
-              <div className="flex justify-between mb-1">
+            <div key={index} className="mb-3">
+              <div className="flex justify-between text-sm md:text-base mb-1">
                 <span>{lang.name}</span>
                 <span>{lang.level}%</span>
               </div>
@@ -48,17 +50,17 @@ export function Sidebar() {
           ))}
         </div>
 
-        <div>
-          <p className="text-gray-400 mb-4">Programming</p>
-          <ul className="space-y-2">
+        {/* <div>
+          <p className="text-gray-400 mb-1 md:mb-2">Programming</p>
+          <ul className="list-none space-y-1">
             {tools.map((tool, index) => (
-              <li key={index} className="flex items-center">
+              <li key={index} className="flex items-center text-sm md:text-base">
                 <span className="w-2 h-2 bg-primary rounded-full mr-2" />
                 {tool}
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         <button className="btn-primary w-full flex items-center justify-center">
           <Download className="w-4 h-4 mr-2" />
