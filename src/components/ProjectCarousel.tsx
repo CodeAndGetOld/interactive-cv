@@ -62,11 +62,13 @@ const openInMobilePreview = (url: string) => {
   );
 };
 
+import startUpRoImage from '../assets/StartUpRo.png';
+
 const projects: Project[] = [
   {
     title: 'Digital Interactive Service Platform',
     description: 'A full-stack digital interactive service platform built with React and Node.js',
-    image: '../src/assets/StartUpRo.png',
+    image: startUpRoImage,
     technologies: [
       'React',
       'Context API',
