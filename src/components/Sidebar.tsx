@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Download } from 'lucide-react';
+import profileImage from '../assets/profile.jpg';
 
 interface LanguageSkill {
   name: string;
@@ -15,7 +16,7 @@ export function Sidebar() {
   return (
     <aside className="bg-card-dark p-4 md:p-8 mb-4 md:mb-8 flex flex-col items-center">
       <img
-        src="https://media.licdn.com/dms/image/v2/D4D03AQGiJv2QRGbeLA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1722893539330?e=1738195200&v=beta&t=qmNb7gTuDRWzsxKczAyf6W2XOkRGpg2eUYDaqwK0R4E"
+        src={profileImage}
         alt="Profile"
         className="w-24 md:w-32 h-24 md:h-32 rounded-full mx-auto mb-4 md:mb-6 border-2 border-primary"
       />
