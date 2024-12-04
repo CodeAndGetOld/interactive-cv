@@ -2,6 +2,7 @@ import React from 'react';
 import { Code } from 'lucide-react';
 import { ProjectCarousel } from './ProjectCarousel';
 import { Experience } from './Experience';
+import { motion } from 'framer-motion';
 
 interface ServiceCard {
   title: string;
@@ -31,10 +32,29 @@ const stats = [
   { value: '1', label: 'Startup Founded' },
 ];
 
+// Animation variants for sections
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+
 export function MainContent() {
   return (
     <main className="p-4 md:p-8 space-y-8 md:space-y-12">
-      <section className="relative rounded-2xl overflow-hidden">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={sectionVariants}
+        className="relative rounded-2xl overflow-hidden"
+      >
         <img
           src="https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
           alt="Mountains"
@@ -60,33 +80,57 @@ export function MainContent() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <ProjectCarousel />
-      <Experience />
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={sectionVariants}
+      >
+        <ProjectCarousel />
+      </motion.section>
 
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={sectionVariants}
+      >
+        <Experience />
+      </motion.section>
+
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={sectionVariants}
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+      >
         {stats.map((stat, index) => (
           <div key={index} className="card text-center p-4 md:p-6">
             <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">{stat.value}</h3>
             <p className="text-gray-400 text-sm md:text-base">{stat.label}</p>
           </div>
         ))}
-      </section>
+      </motion.section>
 
-      <section>
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={sectionVariants}
+      >
         <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8">My Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => (
-            <div key={index} className="card p-4 md:p-6">
+            <div key={index} className="card p-4 md:p-6 h-auto">
               <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">{service.title}</h3>
-              <p className="text-gray-400 text-sm md:text-base mb-4 md:mb-6">
-                {service.description}
-              </p>
+              <p className="text-gray-400 text-sm md:text-base">{service.description}</p>
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }

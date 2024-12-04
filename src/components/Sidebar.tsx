@@ -2,6 +2,7 @@ import React from 'react';
 import { MapPin, Download } from 'lucide-react';
 import profileImage from '../assets/profile.jpg';
 import html2canvas from 'html2canvas';
+import { motion } from 'framer-motion';
 
 interface LanguageSkill {
   name: string;
@@ -63,13 +64,23 @@ export function Sidebar() {
         <div>
           <p className="text-gray-400 mb-1 md:mb-2">Languages:</p>
           {languages.map((lang, index) => (
-            <div key={index} className="mb-3">
+            <div key={index} className="mb-2">
               <div className="flex justify-between text-sm md:text-base mb-1">
                 <span>{lang.name}</span>
                 <span>{lang.level}%</span>
               </div>
-              <div className="progress-bar">
-                <div className="progress-bar-fill" style={{ width: `${lang.level}%` }} />
+              <div className="h-2 bg-card rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-primary"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${lang.level}%` }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{
+                    duration: 1,
+                    delay: index * 0.2,
+                    ease: 'easeOut',
+                  }}
+                />
               </div>
             </div>
           ))}

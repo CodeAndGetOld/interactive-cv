@@ -1,5 +1,6 @@
 import React from 'react';
 import { Building2, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ExperienceItem {
   company: string;
@@ -82,38 +83,65 @@ const experiences: ExperienceItem[] = [
   },
 ];
 
+// Animation variants for experience items
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
+};
+
+function ExperienceCard({ experience, index }: { experience: ExperienceItem; index: number }) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-50px' }}
+      className="p-4 md:p-6 bg-card-dark rounded-lg"
+    >
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+        <div>
+          <h3 className="text-base md:text-lg font-semibold text-white">{experience.position}</h3>
+          <p className="text-xs md:text-sm text-primary mt-1 mb-2 md:mb-3">
+            {experience.technologies}
+          </p>
+          <div className="flex items-center text-gray-400">
+            <Building2 className="w-4 h-4 mr-2" />
+            <span className="text-sm md:text-base">{experience.company}</span>
+          </div>
+        </div>
+        <div className="flex items-center text-gray-400 mt-2 md:mt-0">
+          <Calendar className="w-4 h-4 mr-2" />
+          <span className="text-sm md:text-base">{experience.period}</span>
+        </div>
+      </div>
+      <ul className="list-disc list-inside space-y-2 text-gray-400">
+        {experience.description.map((desc, i) => (
+          <li key={i} className="text-sm md:text-base">
+            {desc}
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
 export function Experience() {
   return (
     <section className="card mb-4 md:mb-8">
       <h2 className="text-xl font-bold mb-3 md:mb-4">Experience</h2>
       <div className="space-y-4 md:space-y-6">
         {experiences.map((exp, index) => (
-          <div key={index} className="p-4 md:p-6 bg-card-dark rounded-lg">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-              <div>
-                <h3 className="text-base md:text-lg font-semibold text-white">{exp.position}</h3>
-                <p className="text-xs md:text-sm text-primary mt-1 mb-2 md:mb-3">
-                  {exp.technologies}
-                </p>
-                <div className="flex items-center text-gray-400">
-                  <Building2 className="w-4 h-4 mr-2" />
-                  <span className="text-sm md:text-base">{exp.company}</span>
-                </div>
-              </div>
-              <div className="flex items-center text-gray-400 mt-2 md:mt-0">
-                <Calendar className="w-4 h-4 mr-2" />
-                <span className="text-sm md:text-base">{exp.period}</span>
-              </div>
-            </div>
-            <ul className="space-y-2 text-gray-400">
-              {exp.description.map((item, i) => (
-                <li key={i} className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span className="text-sm md:text-base">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ExperienceCard key={index} experience={exp} index={index} />
         ))}
       </div>
     </section>
