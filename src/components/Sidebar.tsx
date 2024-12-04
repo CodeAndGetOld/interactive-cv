@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Download } from 'lucide-react';
 import profileImage from '../assets/profile.jpg';
+import html2canvas from 'html2canvas';
 
 interface LanguageSkill {
   name: string;
@@ -13,6 +14,29 @@ const languages: LanguageSkill[] = [
 ];
 
 export function Sidebar() {
+  const handleDownload = async () => {
+    const content = document.getElementById('root');
+    if (!content) return;
+
+    try {
+      const canvas = await html2canvas(content, {
+        scale: 2, // Higher scale for better quality
+        useCORS: true, // Enable if you have external images
+        logging: false,
+        backgroundColor: '#111827', // Match your dark background
+      });
+
+      // Convert to image and download
+      const image = canvas.toDataURL('image/png', 1.0);
+      const link = document.createElement('a');
+      link.download = 'Tudor-Hotea-CV.png';
+      link.href = image;
+      link.click();
+    } catch (error) {
+      console.error('Error generating image:', error);
+    }
+  };
+
   return (
     <aside className="bg-card-dark p-4 md:p-8 mb-4 md:mb-8 flex flex-col items-center">
       <img
@@ -63,9 +87,12 @@ export function Sidebar() {
           </ul>
         </div> */}
 
-        <button className="btn-primary w-full flex items-center justify-center">
-          <Download className="w-4 h-4 mr-2" />
-          Download CV
+        <button
+          onClick={handleDownload}
+          className="flex items-center space-x-2 bg-primary text-black px-4 py-2 rounded-lg hover:bg-primary/80 transition-colors mt-4 md:mt-6"
+        >
+          <Download className="w-4 h-4" />
+          <span>DOWNLOAD CV</span>
         </button>
       </div>
     </aside>
