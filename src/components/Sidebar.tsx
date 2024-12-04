@@ -39,7 +39,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="bg-card-dark p-4 md:p-8 mb-4 md:mb-8 flex flex-col items-center">
+    <aside className="bg-card-dark p-4 md:p-8 mb-4 md:mb-8 flex flex-col items-center rounded-lg">
       <img
         src={profileImage}
         alt="Profile"

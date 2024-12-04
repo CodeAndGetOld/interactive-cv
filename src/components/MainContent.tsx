@@ -47,7 +47,7 @@ const sectionVariants = {
 
 export function MainContent() {
   return (
-    <main className="p-4 md:p-8 space-y-8 md:space-y-12">
+    <main className="space-y-8 md:space-y-12">
       <motion.section
         initial="hidden"
         whileInView="visible"
