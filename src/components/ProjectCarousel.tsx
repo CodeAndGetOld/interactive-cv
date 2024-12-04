@@ -133,6 +133,19 @@ export function ProjectCarousel() {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? projects.length - 1 : prevIndex - 1));
   };
 
+  const handleProjectClick = (project: Project, e: React.MouseEvent) => {
+    if (project.link === 'https://digital-menu.app/nuria-coffee-studio') {
+      e.preventDefault();
+      // If on mobile, just open in new tab
+      if (window.innerWidth <= 768) {
+        window.open(project.link, '_blank');
+      } else {
+        // On desktop, show mobile preview
+        openInMobilePreview(project.link);
+      }
+    }
+  };
+
   return (
     <div className="relative w-full h-[400px] overflow-hidden rounded-xl">
       {/* Carousel content */}
@@ -165,27 +178,15 @@ export function ProjectCarousel() {
                     </span>
                   ))}
                 </div>
-                {project.title.toLowerCase() === 'digital interactive service platform' ? (
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      openInMobilePreview(project.link);
-                    }}
-                    href={project.link}
-                    className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-                  >
-                    View Project →
-                  </a>
-                ) : (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-                  >
-                    View Project →
-                  </a>
-                )}
+                <a
+                  onClick={(e) => handleProjectClick(project, e)}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                >
+                  View Project →
+                </a>
               </div>
             </div>
           ))}
