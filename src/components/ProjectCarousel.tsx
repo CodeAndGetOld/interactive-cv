@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import startUpRoImage from '../assets/StartUpRo.png';
 
 interface Project {
   title: string;
@@ -50,7 +52,7 @@ const openInMobilePreview = (url: string) => {
   }
 
   // Render the MobilePreview component
-  const root = ReactDOM.createRoot(container);
+  const root = createRoot(container);
   root.render(
     <MobilePreview
       url={url}
@@ -61,8 +63,6 @@ const openInMobilePreview = (url: string) => {
     />,
   );
 };
-
-import startUpRoImage from '../assets/StartUpRo.png';
 
 const projects: Project[] = [
   {

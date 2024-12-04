@@ -75,18 +75,6 @@ export function Sidebar() {
           ))}
         </div>
 
-        {/* <div>
-          <p className="text-gray-400 mb-1 md:mb-2">Programming</p>
-          <ul className="list-none space-y-1">
-            {tools.map((tool, index) => (
-              <li key={index} className="flex items-center text-sm md:text-base">
-                <span className="w-2 h-2 bg-primary rounded-full mr-2" />
-                {tool}
-              </li>
-            ))}
-          </ul>
-        </div> */}
-
         <button
           onClick={handleDownload}
           className="flex items-center space-x-2 bg-primary text-black px-4 py-2 rounded-lg hover:bg-primary/80 transition-colors mt-4 md:mt-6"

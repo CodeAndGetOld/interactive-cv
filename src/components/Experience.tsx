@@ -62,8 +62,7 @@ const experiences: ExperienceItem[] = [
     description: [
       'Using React to build user-facing features',
       'Creating front-end libraries and reusable components',
-      'After designing the wireframes (using Adobe XD or Figma)',
-      'Implement the code accordingly',
+      'After designing the wireframes (using Adobe XD or Figma), implement the code accordingly',
       "Optimizing app components and improving the product's performance",
       'Collaborating with software developers and designers',
     ],
