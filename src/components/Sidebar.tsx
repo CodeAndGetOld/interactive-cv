@@ -74,7 +74,10 @@ export function Sidebar() {
                   className="h-full bg-primary"
                   initial={{ width: 0 }}
                   whileInView={{ width: `${lang.level}%` }}
-                  viewport={{ once: true, margin: '-50px' }}
+                  viewport={{
+                    once: true,
+                    amount: 0.1, // This means the animation will trigger when even 10% of the element is visible
+                  }}
                   transition={{
                     duration: 1,
                     delay: index * 0.2,

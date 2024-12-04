@@ -69,7 +69,10 @@ export function TechnicalSkills() {
                       className="h-full bg-primary"
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true, margin: '-50px' }}
+                      viewport={{ 
+                        once: true,
+                        amount: 0.1 
+                      }}
                       transition={{
                         duration: 1,
                         delay: categoryIndex * 0.2 + skillIndex * 0.1,
