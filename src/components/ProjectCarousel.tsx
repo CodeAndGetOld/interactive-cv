@@ -83,7 +83,7 @@ const projects: Project[] = [
       'Styled-Components',
       'Socket.io',
     ],
-    link: 'https://digital-menu.app/linea',
+    link: 'https://digital-menu.app/nuria-coffee-studio',
   },
   {
     title: 'Process Workbench',
